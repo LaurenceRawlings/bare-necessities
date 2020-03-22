@@ -1,5 +1,5 @@
 name: BareNecessities
-version: ${project.version}
+version: 1.0-SNAPSHOT
 main: io.github.laurencerawlings.barenecessities.BareNecessities
 api-version: 1.13
 prefix: Bare Necessities
