@@ -7,3 +7,8 @@ load: STARTUP
 authors: [LaurenceRawlings]
 description: Essentials style plugin for Spigot/Bukkit Minecraft servers
 website: https://laurencerawlings.github.io
+commands:
+  god:
+    description: Fly and become invunerable to everything!
+    aliases: [invunerable]
+    usage: "§4Usage: /god <player>"

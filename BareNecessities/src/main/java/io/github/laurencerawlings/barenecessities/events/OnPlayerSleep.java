@@ -31,11 +31,14 @@ public class OnPlayerSleep implements Listener {
         Player player = event.getPlayer();
 
         if (event.getBedEnterResult() == PlayerBedEnterEvent.BedEnterResult.OK) {
-            String message = String.format(getMessage(),
-                    event.getPlayer().getDisplayName());
+            String message = String.format(getMessage(), event.getPlayer().getDisplayName());
             plugin.getServer().broadcastMessage(message);
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin,
-                    () -> player.getWorld().setTime(WakeUp),
+                    () -> {
+                        if (player.isSleeping()) {
+                            player.getWorld().setTime(WakeUp);
+                        }
+                    },
                     Delay * 20L);
         }
     }
