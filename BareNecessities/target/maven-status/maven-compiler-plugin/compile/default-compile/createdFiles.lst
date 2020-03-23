@@ -1,3 +1,4 @@
 io\github\laurencerawlings\barenecessities\BareNecessities.class
 io\github\laurencerawlings\barenecessities\events\OnPlayerSleep.class
 io\github\laurencerawlings\barenecessities\commands\God.class
+io\github\laurencerawlings\barenecessities\tasks\SleepTask.class
