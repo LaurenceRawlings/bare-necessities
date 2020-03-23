@@ -9,6 +9,7 @@ public final class BareNecessities extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        loadConfig();
         registerCommands();
         registerEvents();
         getLogger().info("Loaded successfully");
@@ -20,6 +21,12 @@ public final class BareNecessities extends JavaPlugin {
         getLogger().info("Shut down successfully");
     }
 
+    private void loadConfig() {
+        getLogger().info("Loading config...");
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
+    }
+
     private void registerEvents() {
         getLogger().info("Registering events...");
         getServer().getPluginManager().registerEvents(new OnPlayerSleep(this), this);
@@ -27,6 +34,6 @@ public final class BareNecessities extends JavaPlugin {
 
     private void registerCommands() {
         getLogger().info("Registering commands...");
-        getCommand("god").setExecutor(new God());
+        getCommand("god").setExecutor(new God(this));
     }
 }

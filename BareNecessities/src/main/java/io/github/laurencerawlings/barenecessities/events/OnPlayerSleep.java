@@ -1,6 +1,5 @@
 package io.github.laurencerawlings.barenecessities.events;
 
-import io.github.laurencerawlings.barenecessities.BareNecessities;
 import io.github.laurencerawlings.barenecessities.tasks.SleepTask;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -8,8 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBedLeaveEvent;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,10 +24,10 @@ public class OnPlayerSleep implements Listener {
             "%s has gone to bed."
     };
 
-    BareNecessities plugin;
+    JavaPlugin plugin;
     Map<Player, SleepTask> sleepTasks = new HashMap();
 
-    public OnPlayerSleep(BareNecessities plugin) {
+    public OnPlayerSleep(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
