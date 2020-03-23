@@ -14,18 +14,19 @@ import java.util.Map;
 import java.util.Random;
 
 public class OnPlayerSleep implements Listener {
-    public static long WakeUp = 0;
-    public static long Delay = 5;
-    public static boolean RandomMessages = true;
-    public static ChatColor MessageColor = ChatColor.YELLOW;
+    public static long WAKEUP_TIME = 0;
+    public static long WAKEUP_DELAY = 5;
+    public static boolean RANDOM_SLEEP_MESSAGES = true;
+    public static ChatColor SLEEP_MESSAGE_COLOR = ChatColor.YELLOW;
 
-    public static String[] Messages = new String[]{
+    //%s to insert player name
+    private static String[] Messages = new String[] {
             "Ssh, %s is sleeping...",
             "%s has gone to bed."
     };
 
-    JavaPlugin plugin;
-    Map<Player, SleepTask> sleepTasks = new HashMap();
+    private JavaPlugin plugin;
+    private Map<Player, SleepTask> sleepTasks = new HashMap<>();
 
     public OnPlayerSleep(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -39,7 +40,7 @@ public class OnPlayerSleep implements Listener {
             String message = String.format(getMessage(), event.getPlayer().getDisplayName());
             plugin.getServer().broadcastMessage(message);
             SleepTask sleepTask = new SleepTask(player);
-            sleepTask.runTaskLater(plugin, Delay * 20L);
+            sleepTask.runTaskLater(plugin, WAKEUP_DELAY * 20L);
             sleepTasks.put(player, sleepTask);
         }
     }
@@ -54,9 +55,9 @@ public class OnPlayerSleep implements Listener {
 
     private String getMessage() {
         int i = 0;
-        if (RandomMessages) {
+        if (RANDOM_SLEEP_MESSAGES) {
             i = new Random().nextInt(Messages.length);
         }
-        return MessageColor + Messages[i];
+        return SLEEP_MESSAGE_COLOR + Messages[i];
     }
 }

@@ -31,7 +31,6 @@ public class God implements CommandExecutor {
                 return true;
             }
         }
-
         return false;
     }
 

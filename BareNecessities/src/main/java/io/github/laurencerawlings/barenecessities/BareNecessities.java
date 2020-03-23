@@ -1,11 +1,13 @@
 package io.github.laurencerawlings.barenecessities;
 
-import io.github.laurencerawlings.barenecessities.commands.*;
-import io.github.laurencerawlings.barenecessities.events.*;
-import io.github.laurencerawlings.barenecessities.tasks.SleepTask;
+import io.github.laurencerawlings.barenecessities.commands.God;
+import io.github.laurencerawlings.barenecessities.events.OnPlayerSleep;
+import io.github.laurencerawlings.barenecessities.models.Account;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Objects;
 
 public final class BareNecessities extends JavaPlugin {
 
@@ -26,19 +28,31 @@ public final class BareNecessities extends JavaPlugin {
 
     private void loadConfig() {
         getLogger().info("Loading config...");
+
+        //Load
         Configuration config = getConfig();
         config.options().copyDefaults();
         saveDefaultConfig();
 
-        if (config.getBoolean("early-wakeup-time")) {
-            OnPlayerSleep.WakeUp = 23000;
-        } else {
-            OnPlayerSleep.WakeUp = 0;
-        }
+        //Read
+        //General
 
-        OnPlayerSleep.Delay = config.getInt("wakeup-delay");
-        OnPlayerSleep.RandomMessages = config.getBoolean("random-sleep-messages");
-        OnPlayerSleep.MessageColor = ChatColor.valueOf(config.getString("sleep-message-color").toUpperCase());
+
+        //Single Player Sleep
+        if (config.getBoolean("early-wakeup-time")) {
+            OnPlayerSleep.WAKEUP_TIME = 23000;
+        } else {
+            OnPlayerSleep.WAKEUP_TIME = 0;
+        }
+        OnPlayerSleep.WAKEUP_DELAY = config.getInt("wakeup-delay");
+        OnPlayerSleep.RANDOM_SLEEP_MESSAGES = config.getBoolean("random-sleep-messages");
+        OnPlayerSleep.SLEEP_MESSAGE_COLOR = ChatColor.valueOf(Objects.requireNonNull(config.getString("sleep-message-color")).toUpperCase());
+
+        //Homes
+        
+
+        //Economy
+        Account.STARTING_BALANCE = config.getDouble("starting-balance");
     }
 
     private void registerEvents() {
@@ -48,6 +62,6 @@ public final class BareNecessities extends JavaPlugin {
 
     private void registerCommands() {
         getLogger().info("Registering commands...");
-        getCommand("god").setExecutor(new God(this));
+        Objects.requireNonNull(getCommand("god")).setExecutor(new God(this));
     }
 }

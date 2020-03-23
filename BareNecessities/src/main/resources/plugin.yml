@@ -11,6 +11,6 @@ commands:
   god:
     description: Fly and become invunerable to everything!
     aliases: [invunerable]
-    usage: "§cUsage: /god <player>"
+    usage: "§cUsage: /god [<player>]"
     permission: barenecessities.god
     permission-message: §cYou do not have the required permissions to use this command! (barenecessities.god)
