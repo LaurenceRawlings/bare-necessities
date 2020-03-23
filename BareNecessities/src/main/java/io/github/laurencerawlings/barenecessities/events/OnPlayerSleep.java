@@ -9,9 +9,7 @@ import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBedLeaveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class OnPlayerSleep implements Listener {
     public static long WAKEUP_TIME = 0;
@@ -19,17 +17,16 @@ public class OnPlayerSleep implements Listener {
     public static boolean RANDOM_SLEEP_MESSAGES = true;
     public static ChatColor SLEEP_MESSAGE_COLOR = ChatColor.YELLOW;
 
-    //%s to insert player name
-    private static String[] Messages = new String[] {
-            "Ssh, %s is sleeping...",
-            "%s has gone to bed."
-    };
+    public static List<String> SLEEP_MESSAGES = new ArrayList<>();
 
     private JavaPlugin plugin;
     private Map<Player, SleepTask> sleepTasks = new HashMap<>();
 
     public OnPlayerSleep(JavaPlugin plugin) {
         this.plugin = plugin;
+        if (SLEEP_MESSAGES.size() == 0) {
+            SLEEP_MESSAGES.add("%s is sleeping");
+        }
     }
 
     @EventHandler
@@ -56,8 +53,8 @@ public class OnPlayerSleep implements Listener {
     private String getMessage() {
         int i = 0;
         if (RANDOM_SLEEP_MESSAGES) {
-            i = new Random().nextInt(Messages.length);
+            i = new Random().nextInt(SLEEP_MESSAGES.size());
         }
-        return SLEEP_MESSAGE_COLOR + Messages[i];
+        return SLEEP_MESSAGE_COLOR + SLEEP_MESSAGES.get(i);
     }
 }

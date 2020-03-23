@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.List;
 import java.util.Objects;
 
 public final class BareNecessities extends JavaPlugin {
@@ -47,9 +48,12 @@ public final class BareNecessities extends JavaPlugin {
         OnPlayerSleep.WAKEUP_DELAY = config.getInt("wakeup-delay");
         OnPlayerSleep.RANDOM_SLEEP_MESSAGES = config.getBoolean("random-sleep-messages");
         OnPlayerSleep.SLEEP_MESSAGE_COLOR = ChatColor.valueOf(Objects.requireNonNull(config.getString("sleep-message-color")).toUpperCase());
+        for (String message : config.getStringList("sleep-messages")) {
+            OnPlayerSleep.SLEEP_MESSAGES.add(message.replaceAll("<player>", "%s"));
+        }
 
         //Homes
-        
+
 
         //Economy
         Account.STARTING_BALANCE = config.getDouble("starting-balance");

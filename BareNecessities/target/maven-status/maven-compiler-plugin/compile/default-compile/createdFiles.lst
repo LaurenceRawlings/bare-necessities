@@ -1,4 +1,7 @@
+io\github\laurencerawlings\barenecessities\commands\God.class
+io\github\laurencerawlings\barenecessities\models\Account.class
 io\github\laurencerawlings\barenecessities\BareNecessities.class
 io\github\laurencerawlings\barenecessities\events\OnPlayerSleep.class
-io\github\laurencerawlings\barenecessities\commands\God.class
+io\github\laurencerawlings\barenecessities\commands\SetHome.class
+io\github\laurencerawlings\barenecessities\models\Home.class
 io\github\laurencerawlings\barenecessities\tasks\SleepTask.class

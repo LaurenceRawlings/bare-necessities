@@ -34,6 +34,11 @@ wakeup-delay: 5
 
 # Broadcast random sleep messages when a player goes to sleep
 random-sleep-messages: true
+
+# Random sleep messages
+sleep-messages:
+  - <player> is sleeping
+
 sleep-message-color: yellow
 
 
