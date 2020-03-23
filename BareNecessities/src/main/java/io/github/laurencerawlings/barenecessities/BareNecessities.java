@@ -1,6 +1,6 @@
 package io.github.laurencerawlings.barenecessities;
 
-import io.github.laurencerawlings.barenecessities.events.BedListener;
+import io.github.laurencerawlings.barenecessities.events.OnPlayerSleep;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BareNecessities extends JavaPlugin {
@@ -9,7 +9,7 @@ public final class BareNecessities extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getLogger().info("Registering events...");
-        getServer().getPluginManager().registerEvents(new BedListener(this),
+        getServer().getPluginManager().registerEvents(new OnPlayerSleep(this),
                 this);
         getLogger().info("Loaded successfully");
     }

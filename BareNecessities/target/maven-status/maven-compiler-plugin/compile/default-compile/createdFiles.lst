@@ -1,2 +1,2 @@
 io\github\laurencerawlings\barenecessities\BareNecessities.class
-io\github\laurencerawlings\barenecessities\events\BedListener.class
+io\github\laurencerawlings\barenecessities\events\OnPlayerSleep.class

@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerBedEnterEvent;
 
 import java.util.Random;
 
-public class BedListener implements Listener {
+public class OnPlayerSleep implements Listener {
     public static long WakeUp = 0;
     public static long Delay = 5;
     public static boolean RandomMessages = true;
@@ -22,7 +22,7 @@ public class BedListener implements Listener {
 
     BareNecessities plugin;
 
-    public BedListener(BareNecessities plugin) {
+    public OnPlayerSleep(BareNecessities plugin) {
         this.plugin = plugin;
     }
 
