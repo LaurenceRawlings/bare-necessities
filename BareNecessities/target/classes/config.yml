@@ -1,0 +1,11 @@
+#########################################################
+#                                                       #
+#                 Bare Necessities                      #
+#                                                       #
+#########################################################
+
+# Single Player Sleep #
+early-wakeup-time: false
+wakeup-delay: 5
+random-sleep-messages: true
+sleep-message-color: yellow

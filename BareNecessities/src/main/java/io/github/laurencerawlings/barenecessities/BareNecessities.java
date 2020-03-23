@@ -2,6 +2,9 @@ package io.github.laurencerawlings.barenecessities;
 
 import io.github.laurencerawlings.barenecessities.commands.*;
 import io.github.laurencerawlings.barenecessities.events.*;
+import io.github.laurencerawlings.barenecessities.tasks.SleepTask;
+import org.bukkit.ChatColor;
+import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BareNecessities extends JavaPlugin {
@@ -23,8 +26,19 @@ public final class BareNecessities extends JavaPlugin {
 
     private void loadConfig() {
         getLogger().info("Loading config...");
-        getConfig().options().copyDefaults();
+        Configuration config = getConfig();
+        config.options().copyDefaults();
         saveDefaultConfig();
+
+        if (config.getBoolean("early-wakeup-time")) {
+            OnPlayerSleep.WakeUp = 23000;
+        } else {
+            OnPlayerSleep.WakeUp = 0;
+        }
+
+        OnPlayerSleep.Delay = config.getInt("wakeup-delay");
+        OnPlayerSleep.RandomMessages = config.getBoolean("random-sleep-messages");
+        OnPlayerSleep.MessageColor = ChatColor.valueOf(config.getString("sleep-message-color").toUpperCase());
     }
 
     private void registerEvents() {

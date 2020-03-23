@@ -18,6 +18,7 @@ public class SleepTask extends BukkitRunnable {
     public void run() {
         if (!cancelled) {
             player.getWorld().setTime(WakeUp);
+            player.teleport(player.getBedLocation());
         } else {
             this.cancel();
         }
