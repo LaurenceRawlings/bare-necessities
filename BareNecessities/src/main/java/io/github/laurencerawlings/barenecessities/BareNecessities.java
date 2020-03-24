@@ -7,10 +7,13 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.List;
 import java.util.Objects;
 
 public final class BareNecessities extends JavaPlugin {
+
+    public static JavaPlugin getPlugin() {
+        return BareNecessities.getPlugin(BareNecessities.class);
+    }
 
     @Override
     public void onEnable() {
@@ -61,11 +64,14 @@ public final class BareNecessities extends JavaPlugin {
 
     private void registerEvents() {
         getLogger().info("Registering events...");
-        getServer().getPluginManager().registerEvents(new OnPlayerSleep(this), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerSleep(), this);
     }
 
     private void registerCommands() {
         getLogger().info("Registering commands...");
-        Objects.requireNonNull(getCommand("god")).setExecutor(new God(this));
+        Objects.requireNonNull(getCommand("god")).setExecutor(new God());
     }
+
+
+
 }

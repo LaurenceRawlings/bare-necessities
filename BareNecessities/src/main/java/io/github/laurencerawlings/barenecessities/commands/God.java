@@ -1,5 +1,7 @@
 package io.github.laurencerawlings.barenecessities.commands;
 
+import io.github.laurencerawlings.barenecessities.BareNecessities;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -9,10 +11,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class God implements CommandExecutor {
-    private JavaPlugin plugin;
 
-    public God(JavaPlugin plugin) {
-        this.plugin = plugin;
+    public God() {
+
     }
 
     @Override
@@ -22,7 +23,7 @@ public class God implements CommandExecutor {
                 toggleGod((Player) sender);
                 return true;
             } else if (args.length == 1) {
-                Player player  = plugin.getServer().getPlayerExact(args[0]);
+                Player player  = Bukkit.getPlayerExact(args[0]);
                 if (player != null) {
                     toggleGod(player);
                 } else {
