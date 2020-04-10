@@ -1,6 +1,5 @@
 package io.github.laurencerawlings.barenecessities.commands;
 
-import io.github.laurencerawlings.barenecessities.BareNecessities;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -8,7 +7,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class God implements CommandExecutor {
 
@@ -23,9 +21,9 @@ public class God implements CommandExecutor {
                 toggleGod((Player) sender);
                 return true;
             } else if (args.length == 1) {
-                Player player  = Bukkit.getPlayerExact(args[0]);
-                if (player != null) {
-                    toggleGod(player);
+                Player target  = Bukkit.getPlayerExact(args[0]);
+                if (target != null) {
+                    toggleGod(target);
                 } else {
                     sender.sendMessage(ChatColor.RED + "Player not found");
                 }

@@ -1,8 +1,11 @@
 package io.github.laurencerawlings.barenecessities;
 
 import io.github.laurencerawlings.barenecessities.commands.God;
+import io.github.laurencerawlings.barenecessities.commands.SetHome;
+import io.github.laurencerawlings.barenecessities.events.OnPlayerJoin;
 import io.github.laurencerawlings.barenecessities.events.OnPlayerSleep;
 import io.github.laurencerawlings.barenecessities.models.Account;
+import io.github.laurencerawlings.barenecessities.systems.AccountSystem;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -10,9 +13,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.Objects;
 
 public final class BareNecessities extends JavaPlugin {
+    private AccountSystem accountSystem;
 
     public static JavaPlugin getPlugin() {
         return BareNecessities.getPlugin(BareNecessities.class);
+    }
+
+    public AccountSystem getAccountSystem() {
+        return accountSystem;
     }
 
     @Override
@@ -21,6 +29,10 @@ public final class BareNecessities extends JavaPlugin {
         loadConfig();
         registerCommands();
         registerEvents();
+
+        startAccountSystem();
+
+
         getLogger().info("Loaded successfully");
     }
 
@@ -65,13 +77,18 @@ public final class BareNecessities extends JavaPlugin {
     private void registerEvents() {
         getLogger().info("Registering events...");
         getServer().getPluginManager().registerEvents(new OnPlayerSleep(), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerJoin(this), this);
     }
 
     private void registerCommands() {
         getLogger().info("Registering commands...");
         Objects.requireNonNull(getCommand("god")).setExecutor(new God());
+        Objects.requireNonNull(getCommand("home")).setExecutor(new SetHome());
     }
 
-
+    private void startAccountSystem() {
+        getLogger().info("Starting account system...");
+        accountSystem = new AccountSystem();
+    }
 
 }

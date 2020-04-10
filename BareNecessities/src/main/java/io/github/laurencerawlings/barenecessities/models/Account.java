@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Account {
@@ -26,5 +27,20 @@ public class Account {
         this.afk = false;
         this.balance = STARTING_BALANCE;
         this.homes = new ArrayList<>();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (o instanceof UUID) return  uuid.equals(o);
+        if (getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return uuid.equals(account.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid);
     }
 }
