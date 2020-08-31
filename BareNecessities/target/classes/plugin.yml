@@ -1,7 +1,7 @@
 name: BareNecessities
 version: 1.0-SNAPSHOT
 main: io.github.laurencerawlings.barenecessities.BareNecessities
-api-version: 1.13
+api-version: 1.16
 prefix: Bare Necessities
 load: STARTUP
 authors: [LaurenceRawlings]
@@ -14,3 +14,8 @@ commands:
     usage: "§cUsage: /god [<player>]"
     permission: barenecessities.god
     permission-message: §cYou do not have the required permissions to use this command! (barenecessities.god)
+  home:
+    description: Go to your home location
+    usage: "§cUsage: /home [<player>]"
+    permission: barenecessities.home
+    permission-message: §cYou do not have the required permissions to use this command! (barenecessities.home)
