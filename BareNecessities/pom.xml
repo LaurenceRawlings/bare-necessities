@@ -21,12 +21,11 @@
 
     <build>
         <defaultGoal>clean package</defaultGoal>
-        <directory>${dir}</directory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -35,7 +34,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.2.4</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -48,6 +47,30 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <target>
+                        <echo>ANT TASK - copying package to plugins folder...</echo>
+                        <copy todir="${basedir}/server/plugins" overwrite="true" flatten="true">
+                            <fileset dir="${basedir}" includes="*.jar" >
+                                <include name="target/${project.artifactId}*.jar" />
+                            </fileset>
+                        </copy>
+                    </target>
+                </configuration>
             </plugin>
         </plugins>
         <resources>

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="maven-antrun-" default="main"  >
 <target name="main">
-  <echo>ANT TASK - copying files....</echo>
+  <echo>ANT TASK - copying package to plugins folder...</echo>
   <copy flatten="true" todir="D:\Git\LaurenceRawlings\bare-necessities\BareNecessities/server/plugins" overwrite="true">
     <fileset includes="*.jar" dir="D:\Git\LaurenceRawlings\bare-necessities\BareNecessities">
       <include name="target/BareNecessities*.jar"/>
-      <exclude name="target/BareNecessities*shaded.jar"/>
     </fileset>
   </copy>
 </target>
