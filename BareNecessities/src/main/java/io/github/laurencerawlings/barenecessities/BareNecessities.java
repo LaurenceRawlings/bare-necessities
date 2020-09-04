@@ -82,8 +82,8 @@ public final class BareNecessities extends JavaPlugin {
 
     private void registerCommands() {
         getLogger().info("Registering commands...");
-        getCommand("god").setExecutor(new God());
-        getCommand("home").setExecutor(new SetHome());
+        Objects.requireNonNull(getCommand("god")).setExecutor(new God());
+        Objects.requireNonNull(getCommand("home")).setExecutor(new SetHome());
     }
 
     private void startAccountSystem() {
